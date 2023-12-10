@@ -13,6 +13,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $filamentMakeUserCommand = new FilamentMakeUserCommand();
+        $reflector = new \ReflectionObject($filamentMakeUserCommand);
+
+        $getUserModel = $reflector->getMethod('getUserModel');
+        $getUserModel->setAccessible(true);
+        $getUserModel->invoke($filamentMakeUserCommand)::create([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
     }
 }
