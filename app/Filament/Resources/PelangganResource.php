@@ -32,7 +32,7 @@ class PelangganResource extends Resource
             ->schema([
                 Section::make()
                 ->schema([
-                    TextInput::make('nama_pelanggan')
+                    TextInput::make('nama')
                         ->label('Nama Pelanggan')
                         ->required(),
 
@@ -51,7 +51,7 @@ class PelangganResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nama_pelanggan'),
+                TextColumn::make('nama'),
                 TextColumn::make('alamat'),
                 TextColumn::make('no_telepon')
             ])
