@@ -19,8 +19,8 @@ return new class extends Migration
                 $table->date('tanggal_selesai');
                 $table->unsignedBigInteger('total_harga');
                 $table->timestamps();
-                //$table->foreign('id_pelanggan')->references('id')->on('pelanggan');
-                //$table->foreign('id_karyawan')->references('id')->on('karyawan');
+                $table->foreign('id_pelanggan')->references('id')->on('pelanggan');
+                $table->foreign('id_karyawan')->references('id')->on('karyawan');
             });
         }
 

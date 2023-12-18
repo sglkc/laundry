@@ -33,12 +33,12 @@ class PesananResource extends Resource
             ->schema([
                 Section::make()
                     ->schema([
-                        //TextInput::make('id_pelanggan')
-                        //    ->label('ID Pelanggan')
-                        //    ->required(),
-                        //TextInput::make('id_karyawan')
-                        //    ->label('ID Karyawan')
-                        //    ->required(),
+                        TextInput::make('id_pelanggan')
+                            ->label('ID Pelanggan')
+                            ->required(),
+                        TextInput::make('id_karyawan')
+                            ->label('ID Karyawan')
+                            ->required(),
                         DatePicker::make('tanggal_selesai')
                             ->label('Tanggal Selesai')
                             ->required(),
@@ -60,7 +60,7 @@ class PesananResource extends Resource
                 TextColumn::make('id_karyawan'),
                 TextColumn::make('tanggal_pesanan'),
                 TextColumn::make('tanggal_selesai'),
-                TextColumn::make('total_harga'),
+                TextColumn::make('berat'),
             ])
             ->filters([
                 //
