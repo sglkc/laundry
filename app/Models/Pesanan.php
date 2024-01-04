@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Pesanan extends Model
 {
@@ -20,13 +20,13 @@ class Pesanan extends Model
         'total_harga'
     ];
 
-    public function karyawan(): HasOne
+    public function karyawan(): BelongsTo
     {
-        return $this->hasOne(Karyawan::class, 'id');
+        return $this->belongsTo(Karyawan::class, 'id_karyawan');
     }
 
-    public function pelanggan(): HasOne
+    public function pelanggan(): BelongsTo
     {
-        return $this->hasOne(Pelanggan::class, 'id');
+        return $this->belongsTo(Pelanggan::class, 'id_pelanggan');
     }
 }

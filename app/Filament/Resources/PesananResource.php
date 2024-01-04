@@ -19,6 +19,7 @@ use Filament\Support\RawJs;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Grouping\Group;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -43,7 +44,7 @@ class PesananResource extends Resource
                             ->label('Karyawan')
                             ->placeholder('Pilih nama karyawan')
                             ->options(
-                                Karyawan::all()
+                                Karyawan::all(['id', 'nama', 'no_telepon'])
                                     ->mapWithKeys(fn (Model $model) => [
                                         $model['id'] => "$model[nama] ($model[no_telepon])"
                                     ])
@@ -55,7 +56,7 @@ class PesananResource extends Resource
                             ->label('Pelanggan')
                             ->placeholder('Pilih nama pelanggan')
                             ->options(
-                                Pelanggan::all()
+                                Pelanggan::all(['id', 'nama', 'no_telepon'])
                                     ->mapWithKeys(fn (Model $model) => [
                                         $model['id'] => "$model[nama] ($model[no_telepon])"
                                     ])
@@ -90,7 +91,7 @@ class PesananResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('no')->rowIndex()->grow(false),
-                TextColumn::make('pelanggan.nama')->searchable(),
+                TextColumn::make('pelanggan.nama'),
                 TextColumn::make('pelanggan.no_telepon')->searchable()->label('Telp. Pelanggan'),
                 TextColumn::make('karyawan.nama')->searchable(),
                 TextColumn::make('tanggal_pesanan')->dateTime('d M Y')->sortable(),

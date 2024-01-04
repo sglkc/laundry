@@ -13,14 +13,12 @@ return new class extends Migration
         {
             Schema::create('pesanan', function (Blueprint $table) {
                 $table->id();
-                $table->unsignedBigInteger('id_pelanggan');
-                $table->unsignedBigInteger('id_karyawan');
+                $table->foreignId('id_pelanggan')->constrained('pelanggan');
+                $table->foreignId('id_karyawan')->constrained('karyawan');
                 $table->date('tanggal_pesanan')->useCurrent();
                 $table->date('tanggal_selesai')->nullable();
                 $table->unsignedBigInteger('total_harga');
                 $table->timestamps();
-                $table->foreign('id_pelanggan')->references('id')->on('pelanggan');
-                $table->foreign('id_karyawan')->references('id')->on('karyawan');
             });
         }
 

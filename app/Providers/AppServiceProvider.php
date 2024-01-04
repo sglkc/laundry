@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Filament\Forms\Components\DatePicker;
+use Filament\Support\Assets\Css;
+use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,5 +30,9 @@ class AppServiceProvider extends ServiceProvider
                 ->native(false)
                 ->closeOnDateSelection(true);
         });
+
+        FilamentAsset::register([
+            Css::make('custom', __DIR__ . '/../../resources/css/custom.css'),
+        ]);
     }
 }
