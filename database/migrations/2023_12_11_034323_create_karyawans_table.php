@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('karyawan', function (Blueprint $table) {
             $table->id();
-            $table->string("nama", 50);
-            $table->string("alamat",70);
-            $table->date("tanggal_lahir");
-            $table->enum("jenis_kelamin",['p','w']);
-            $table->string("no_telpon");
+            $table->string('nama', 50);
+            $table->string('alamat', 70);
+            $table->date('tanggal_lahir');
+            $table->enum('jenis_kelamin', ['Pria', 'Wanita']);
+            $table->string('no_telepon');
             $table->timestamps();
         });
     }

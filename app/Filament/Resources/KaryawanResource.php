@@ -24,7 +24,9 @@ class KaryawanResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
 
-    protected static ?string $pluralModelLabel ='karyawan';
+    protected static ?string $recordTitleAttribute = 'nama';
+
+    protected static ?string $modelLabel ='karyawan';
 
     protected static ?string $slug ='karyawan';
 
@@ -42,15 +44,18 @@ class KaryawanResource extends Resource
                             ->required(),
                         DatePicker::make('tanggal_lahir')
                             ->label('Tanggal Lahir')
+                            ->maxDate(now()->subYears(16))
+                            ->default(now()->subYears(16))
                             ->required(),
                         Radio::make('jenis_kelamin')
                             ->options([
-                                'p' => 'Pria',
-                                'w' => 'Wanita'
+                                'Pria' => 'Pria',
+                                'Wanita' => 'Wanita'
                             ])
                             ->required(),
-                        TextInput::make('no_telpon')
+                        TextInput::make('no_telepon')
                             ->tel()
+                            ->numeric()
                             ->label('No Telepon')
                             ->required()
                     ])
@@ -61,14 +66,20 @@ class KaryawanResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nama'),
-                TextColumn::make('alamat'),
-                TextColumn::make('tanggal_lahir'),
+                TextColumn::make('no')->rowIndex()->grow(false),
+                TextColumn::make('nama')->searchable()->sortable(),
+                TextColumn::make('alamat')->searchable()->sortable(),
+                TextColumn::make('tanggal_lahir')->dateTime('d M Y'),
                 TextColumn::make('jenis_kelamin'),
-                TextColumn::make('no_telpon')
+                TextColumn::make('no_telepon')->searchable()
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('jenis_kelamin')
+                    ->attribute('jenis_kelamin')
+                    ->options([
+                        'pria' => 'Pria',
+                        'wanita' => 'Wanita'
+                    ])
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -16,6 +16,6 @@ class Karyawan extends Model
         'alamat',
         'tanggal_lahir',
         'jenis_kelamin',
-        'no_telpon'
+        'no_telepon'
     ];
 }
