@@ -83,12 +83,15 @@ class KaryawanResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()->label('')->icon(null),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->recordUrl(null)
+            ->recordAction(Tables\Actions\ViewAction::class);
     }
 
     public static function getRelations(): array

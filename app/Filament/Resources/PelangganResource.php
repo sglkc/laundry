@@ -20,11 +20,13 @@ class PelangganResource extends Resource
 {
     protected static ?string $model = Pelanggan::class;
 
-    protected static ?string $pluralModelLabel = 'pelanggan';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
+    protected static ?string $recordTitleAttribute = 'nama';
+
+    protected static ?string $modelLabel = 'pelanggan';
 
     protected static ?string $slug = 'pelanggan';
-
-    protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     public static function form(Form $form): Form
     {
@@ -42,6 +44,7 @@ class PelangganResource extends Resource
 
                         TextInput::make('no_telepon')
                             ->label('No Telepon')
+                            ->numeric()
                             ->tel()
                             ->required()
                     ])
@@ -52,21 +55,25 @@ class PelangganResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nama'),
-                TextColumn::make('alamat'),
-                TextColumn::make('no_telepon')
+                TextColumn::make('no')->rowIndex()->grow(false),
+                TextColumn::make('nama')->searchable(isIndividual: true)->sortable(),
+                TextColumn::make('alamat')->searchable(isIndividual: true)->sortable(),
+                TextColumn::make('no_telepon')->searchable(isIndividual: true)->sortable()
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()->label('')->icon(null),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->recordUrl(null)
+            ->recordAction(Tables\Actions\ViewAction::class);
     }
 
     public static function getRelations(): array
