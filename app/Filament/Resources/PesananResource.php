@@ -4,11 +4,15 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PesananResource\Pages;
 use App\Filament\Resources\PesananResource\RelationManagers;
+use App\Models\Karyawan;
+use App\Models\Pelanggan;
 use App\Models\Pesanan;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -21,7 +25,7 @@ class PesananResource extends Resource
 {
     protected static ?string $model = Pesanan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-inbox-stack';
 
     protected static ?string $pluralModelLabel = 'pesanan';
 
@@ -33,20 +37,35 @@ class PesananResource extends Resource
             ->schema([
                 Section::make()
                     ->schema([
-                        TextInput::make('id_pelanggan')
-                            ->label('ID Pelanggan')
+                        Select::make('id_karyawan')
+                            ->label('Karyawan')
+                            ->options(Karyawan::all()->pluck('nama', 'id'))
+                            ->searchable()
                             ->required(),
-                        TextInput::make('id_karyawan')
-                            ->label('ID Karyawan')
+
+                        Select::make('id_pelanggan')
+                            ->label('Pelanggan')
+                            ->options(Pelanggan::all()->pluck('nama', 'id'))
+                            ->searchable()
                             ->required(),
-                        DatePicker::make('tanggal_selesai')
-                            ->label('Tanggal Selesai')
-                            ->required(),
-                        DatePicker::make('tanggal_selesai')
-                            ->label('Tanggal Selesai')
-                            ->required(),
+
+                        Grid::make()
+                            ->schema([
+                                DatePicker::make('tanggal_pesanan')
+                                    ->label('Tanggal Pesanan')
+                                    ->required(),
+
+                                DatePicker::make('tanggal_selesai')
+                                    ->label('Tanggal Selesai')
+                                    ->required(),
+                            ]),
+
                         TextInput::make('total_harga')
                             ->label('Total Harga')
+                            ->numeric()
+                            ->minValue(0)
+                            ->default(0)
+                            ->step(10000)
                             ->required()
                     ])
             ]);
