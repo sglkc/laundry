@@ -93,9 +93,9 @@ class PesananResource extends Resource
                 TextColumn::make('pelanggan.nama')->searchable(),
                 TextColumn::make('pelanggan.no_telepon')->searchable()->label('Telp. Pelanggan'),
                 TextColumn::make('karyawan.nama')->searchable(),
-                TextColumn::make('tanggal_pesanan')->sortable(),
-                TextColumn::make('tanggal_selesai')->sortable()->placeholder('Belum selesai'),
-                TextColumn::make('berat'), // TODO
+                TextColumn::make('tanggal_pesanan')->dateTime('d M Y')->sortable(),
+                TextColumn::make('tanggal_selesai')->dateTime('d M Y')->sortable()->placeholder('Belum selesai'),
+                TextColumn::make('total_harga')->prefix('Rp. ')->numeric(), // TODO
             ])
             ->filters([
                 //
