@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Pesanan extends Model
 {
@@ -18,4 +19,14 @@ class Pesanan extends Model
         'tanggal_selesai',
         'total_harga'
     ];
+
+    public function karyawan(): HasOne
+    {
+        return $this->hasOne(Karyawan::class, 'id');
+    }
+
+    public function pelanggan(): HasOne
+    {
+        return $this->hasOne(Pelanggan::class, 'id');
+    }
 }

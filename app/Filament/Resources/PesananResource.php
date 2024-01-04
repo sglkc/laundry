@@ -15,10 +15,12 @@ use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\RawJs;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PesananResource extends Resource
@@ -39,13 +41,25 @@ class PesananResource extends Resource
                     ->schema([
                         Select::make('id_karyawan')
                             ->label('Karyawan')
-                            ->options(Karyawan::all()->pluck('nama', 'id'))
+                            ->placeholder('Pilih nama karyawan')
+                            ->options(
+                                Karyawan::all()
+                                    ->mapWithKeys(fn (Model $model) => [
+                                        $model['id'] => "$model[nama] ($model[no_telepon])"
+                                    ])
+                            )
                             ->searchable()
                             ->required(),
 
                         Select::make('id_pelanggan')
                             ->label('Pelanggan')
-                            ->options(Pelanggan::all()->pluck('nama', 'id'))
+                            ->placeholder('Pilih nama pelanggan')
+                            ->options(
+                                Pelanggan::all()
+                                    ->mapWithKeys(fn (Model $model) => [
+                                        $model['id'] => "$model[nama] ($model[no_telepon])"
+                                    ])
+                            )
                             ->searchable()
                             ->required(),
 
@@ -56,13 +70,13 @@ class PesananResource extends Resource
                                     ->required(),
 
                                 DatePicker::make('tanggal_selesai')
-                                    ->label('Tanggal Selesai')
-                                    ->required(),
+                                    ->label('Tanggal Selesai (Kosong jika belum)')
                             ]),
 
                         TextInput::make('total_harga')
                             ->label('Total Harga')
                             ->numeric()
+                            ->prefix('Rp.')
                             ->minValue(0)
                             ->default(0)
                             ->step(10000)
@@ -75,11 +89,13 @@ class PesananResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id_pelanggan'),
-                TextColumn::make('id_karyawan'),
-                TextColumn::make('tanggal_pesanan'),
-                TextColumn::make('tanggal_selesai'),
-                TextColumn::make('berat'),
+                TextColumn::make('no')->rowIndex()->grow(false),
+                TextColumn::make('pelanggan.nama')->searchable(),
+                TextColumn::make('pelanggan.no_telepon')->searchable()->label('Telp. Pelanggan'),
+                TextColumn::make('karyawan.nama')->searchable(),
+                TextColumn::make('tanggal_pesanan')->sortable(),
+                TextColumn::make('tanggal_selesai')->sortable()->placeholder('Belum selesai'),
+                TextColumn::make('berat'), // TODO
             ])
             ->filters([
                 //
