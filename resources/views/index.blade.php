@@ -85,7 +85,7 @@
   <main id="main">
 
     <!-- ======= Features Section ======= -->
-    <section class="features">
+    <section id="features" class="features">
       <div class="container" data-aos="fade-up">
 
         <ul class="nav nav-tabs row gy-4 d-flex">
@@ -122,7 +122,7 @@
 
         <div class="tab-content">
 
-          <div id="features" class="tab-pane active show" id="tab-1">
+          <div class="tab-pane active show" id="tab-1">
             <div class="row gy-4">
               <div class="col-lg-8 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
                 <h3>Wash And Dry</h3>
@@ -221,7 +221,7 @@
               </div>
             </div>
           </div><!-- End Tab Content 4 -->
-
+          </section>
 
     <!-- ======= Team Section ======= -->
     <section id="team" class="team">
