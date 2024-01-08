@@ -52,7 +52,7 @@
   <header id="header" class="header fixed-top" data-scrollto-offset="0">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+      <a href="#main" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <img src="assets/img/logo.png" alt="">
         <h1>Laundry Express<span>.</span></h1>
@@ -76,7 +76,7 @@
     <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out">
       <img src="assets/img/hero-carousel/landing.png  " class="img-fluid animated">
       <h2>Welcome to <span>Laundry Express</span></h2>
-      <p>Selamat datang di LaundryExpress! Cuci pakaian jadi 
+      <p>Selamat datang di LaundryExpress! Cuci pakaian jadi
         lebih mudah dengan layanan antar-jemput kami. Pemesanan
         online cepat dan hasil cuci terbaik.</p>
     </div>
@@ -151,8 +151,8 @@
               <div class="col-lg-8 order-2 order-lg-1">
                 <h3>Pick Up</h3>
                 <p>
-                  Dengan layanan pick up kami, Anda tidak perlu repot-repot datang ke tempat pencucian pakaian. Tim kami yang profesional akan 
-                  menjemput pakaian kotor Anda langsung di depan pintu rumah atau tempat kerja Anda, sesuai dengan jadwal yang telah Anda tentukan. 
+                  Dengan layanan pick up kami, Anda tidak perlu repot-repot datang ke tempat pencucian pakaian. Tim kami yang profesional akan
+                  menjemput pakaian kotor Anda langsung di depan pintu rumah atau tempat kerja Anda, sesuai dengan jadwal yang telah Anda tentukan.
                   Ini memberi Anda kebebasan untuk fokus pada kegiatan lain yang lebih penting dalam harian Anda.
                 </p>
                 <p class="fst-italic">
@@ -201,7 +201,7 @@
               <div class="col-lg-8 order-2 order-lg-1">
                 <h3>Guarantee</h3>
                 <p>
-                  Layanan yang kami sediakan akan dilindungi dengan garansi yang kami miliki. Kami mengutamakan kenyamanan dan kualitas untuk pengguna, 
+                  Layanan yang kami sediakan akan dilindungi dengan garansi yang kami miliki. Kami mengutamakan kenyamanan dan kualitas untuk pengguna,
                   sehingga pelayanan yang kami berikan dapat berkesan dan menjadi sahabat hati Anda dalam memilih layanan laundry terbaik untuk pakaian
                   yang Anda gunakan.
                 </p>
@@ -240,7 +240,7 @@
                 <a href="https://wa.me/qr/A5M6DUTIYSZHO1"><img src="assets/img/team/contact1.jpg" class="img-fluid" alt="whatsaap icon"></a>
               </div>
               <div class="member-info">
-                <h4>Whatsapp</h4>   
+                <h4>Whatsapp</h4>
               </div>
             </div>
           </div><!-- End Team Member -->

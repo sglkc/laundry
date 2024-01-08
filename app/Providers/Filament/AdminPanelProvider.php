@@ -17,6 +17,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Login;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -54,6 +55,10 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->sidebarWidth('15rem');
+            ->login(Login::class)
+            ->sidebarWidth('15rem')
+            ->favicon(asset('favicon.png'))
+            ->brandLogo(asset('favicon.png'))
+            ->brandName('Laundry Express');
     }
 }
