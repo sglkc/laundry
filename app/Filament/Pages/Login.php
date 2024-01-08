@@ -6,6 +6,7 @@ use Filament\Forms\Form;
 use Filament\Forms\Components\Component;
 use Filament\Pages\Auth\Login as BaseAuth;
 use Filament\Support\Colors\Color;
+use Phpsa\FilamentPasswordReveal\Password;
 
 class Login extends BaseAuth
 {
@@ -14,21 +15,28 @@ class Login extends BaseAuth
         return $form
             ->schema([
                 $this->getEmailFormComponent(),
-                $this->getPasswordFormComponent(),
+                $this->getPasswordComponent(),
                 $this->getRememberFormComponent(),
                 $this->getBackComponent(),
             ])
             ->statePath('data');
     }
 
+    protected function getPasswordComponent(): Component
+    {
+        return Password::make('password')
+            ->revealable()
+            ->autocomplete();
+    }
+
     protected function getBackComponent(): Component
     {
         return Actions::make([
             Action::make('back')
-                ->action(route('index'))
+                ->url('/')
                 ->color(Color::Slate)
                 ->extraAttributes([
-                    'style' => 'opacity: 50%'
+                    'href' => '/'
                 ])
         ])
             ->fullWidth();

@@ -1,7 +1,3 @@
 .fi-sidebar {
     border-right: #ddd 2px solid;
 }
-
-.dark .fi-sidebar {
-    border-right: #444 2px solid;
-}
